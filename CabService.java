@@ -16,13 +16,12 @@ public class CabService {
         return totalFare ;
     }
 
-    public double invoiceGenerator(List<Ride> rides) {
+    public InvoiceSummary invoiceGenerator(List<Ride> rides) {
         double totalFare=0;
         for (Ride ride : rides){
             totalFare += this.invoiceGenerator(ride.distance,ride.time);
             }
 //       double totalFare =(double) rides.stream().map(this :: invoiceGenerator);
-        return totalFare;
+        return new InvoiceSummary(rides.size(), totalFare);
     }
-
 }

@@ -1,5 +1,4 @@
 package com.api.cab;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,14 +32,21 @@ public class CabServiceTest {
         Assert.assertEquals(5,totalFare,0.0);
 
     }
+//    @Test
+//    public void givenMultipleRidesShouldReturnAggregateTotal(){
+//        Ride ride1 = new Ride(10.0,15);
+//        Ride ride2 = new Ride(20.0,30);
+//        List<Ride> rides = Arrays.asList(ride1,ride2);
+//        double aggFare = cabService.invoiceGenerator(rides);
+//        Assert.assertEquals(345,aggFare,0.0);
+//    }
     @Test
-    public void givenMultipleRidesShouldReturnAggregateTotal(){
-        Ride ride1 = new Ride(10.0,15);
-        Ride ride2 = new Ride(20.0,30);
+    public void givenMultipleRidesShouldReturnInvoiceSummary(){
+        Ride ride1 = new Ride(10.0,5);
+        Ride ride2 = new Ride(20.0,5);
         List<Ride> rides = Arrays.asList(ride1,ride2);
-        double aggFare = cabService.invoiceGenerator(rides);
-        Assert.assertEquals(345,aggFare,0.0);
-
+        InvoiceSummary summary = cabService.invoiceGenerator(rides);
+        InvoiceSummary expected = new InvoiceSummary(2,310.0);
+        Assert.assertEquals(expected,summary);
     }
-
 }
